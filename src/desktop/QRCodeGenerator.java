@@ -14,7 +14,7 @@ import java.util.Enumeration;
 
 public class QRCodeGenerator {
 
-    private static final String QR_CODE_IMAGE_PATH = "./qr.png";
+    private static final String QR_CODE_IMAGE_PATH = "./img/qr.png";
     private static final String PORT = "6666";
 
     /**
