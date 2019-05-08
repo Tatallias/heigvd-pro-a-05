@@ -46,8 +46,6 @@ public class LogIn extends BasicGameState {
         start.draw(arg0.getWidth() / 2 - 50, 400);
         g.drawString("Players connected : " + IDAddresses.size() + "/4",
                 arg0.getWidth() / 2 - 100, 500);
-
-        startConnection();
     }
 
     @Override
@@ -61,6 +59,7 @@ public class LogIn extends BasicGameState {
                 arg1.enterState(1);
             }
         }
+        startConnection();
     }
 
     @Override

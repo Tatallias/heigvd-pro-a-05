@@ -27,7 +27,7 @@ public class QRCodeGenerator {
      */
     public static void generateQRCodeImageWithIPsAndPort(int width, int height)
             throws WriterException, IOException {
-        String text = getServerIPs() + "\nPort\n" + PORT;
+        String text = getServerIPs() + "\n" + PORT;
         QRCodeWriter qrCodeWriter = new QRCodeWriter();
         BitMatrix bitMatrix = qrCodeWriter.encode(text, BarcodeFormat.QR_CODE, width, height);
 
@@ -42,7 +42,7 @@ public class QRCodeGenerator {
      * @return : String, IPs du serveur, séparée par "\n"
      */
     private static String getServerIPs() {
-        String serverIPs = "IPs\n";
+        String serverIPs = "";
 
         try {
             Enumeration networkInterfaces = NetworkInterface.getNetworkInterfaces();
@@ -56,7 +56,7 @@ public class QRCodeGenerator {
 
                     // Garde seulement les adresses IPv4
                     if(i instanceof Inet4Address && !i.isLoopbackAddress()) {
-                        serverIPs += i.getHostAddress() + "\n";
+                        serverIPs += i.getHostAddress() + " ";
                     }
                 }
             }
