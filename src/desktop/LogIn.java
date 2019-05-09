@@ -23,9 +23,11 @@ import java.util.logging.Logger;
 public class LogIn extends BasicGameState {
 
     private Image qrCode, start;
-    private int listenPort = 5000;
+    private final int PORT = 5000;
     final static Logger LOG = Logger.getLogger(Handler.class.getName());
     private Map<SocketAddress, Integer> IDAddresses = new HashMap<>();
+    private int nbThread = 0;
+    private boolean stopThread;
 
     @Override
     public void init(GameContainer arg0, StateBasedGame arg1) throws SlickException {
@@ -37,29 +39,81 @@ public class LogIn extends BasicGameState {
         }
         qrCode = new Image("img/qr.png");
         start = new Image("img/Start.png");
+        if(nbThread < 1) {
+            // Anonymous class, implements Runnable
+            // Manage the connexion of the players
+            new Thread(
+                    new Runnable () {
+                private LogIn parent = LogIn.this;
+                private int listenPort = PORT;
+
+                @Override
+                public void run() {
+                    DatagramChannel channel;
+                    ByteBuffer receivingBuffer;
+
+                    try {
+                        channel = DatagramChannel.open(StandardProtocolFamily.INET);
+                        channel.bind(new InetSocketAddress(listenPort));
+                        channel.configureBlocking(false);
+
+                        receivingBuffer = ByteBuffer.allocate(200);
+                    } catch (IOException ex) {
+                        LOG.log(Level.SEVERE, null, ex);
+                        return;
+                    }
+
+                    while (!parent.getStopThread()) {
+                        LOG.log(Level.INFO, "Waiting for a new client on port {0}", listenPort);
+                        try {
+                            SocketAddress senderAddress;
+                            while (!parent.getStopThread()) {
+                                senderAddress = channel.receive(receivingBuffer);
+                                if (senderAddress != null) {
+                                    int action = Byte.toUnsignedInt(receivingBuffer.get(0));
+
+                                    if (action == 1) {
+                                        parent.addNewPlayer(senderAddress);
+                                    }
+                                }
+                                receivingBuffer.clear();
+                                receivingBuffer.put(new byte[200]);
+                                receivingBuffer.clear();
+                            }
+                        } catch (IOException ex) {
+                            LOG.log(Level.SEVERE, ex.getMessage(), ex);
+                        }
+                    }
+
+                    LOG.log(Level.INFO, "Thread terminated");
+                }
+            }).start();
+            nbThread++;
+        }
+        stopThread = false;
     }
 
     @Override
-    public void render(GameContainer arg0, StateBasedGame arg1, Graphics g) throws SlickException {
-        g.drawString("Connexion", arg0.getWidth() / 2 - 100, 50);
-        qrCode.draw(arg0.getWidth() / 2 - 150, 100);
-        start.draw(arg0.getWidth() / 2 - 50, 400);
+    public void render(GameContainer arg0, StateBasedGame arg1, Graphics g) {
+        g.drawString("Connexion", arg0.getWidth() / 2 - 50, 50);
+        qrCode.draw(arg0.getWidth() / 2 - 150, 75);
+        start.draw(arg0.getWidth() / 2 - 50, 385);
         g.drawString("Players connected : " + IDAddresses.size() + "/4",
-                arg0.getWidth() / 2 - 100, 500);
+                arg0.getWidth() / 2 - 100, 440);
     }
 
     @Override
-    public void update(GameContainer gc, StateBasedGame arg1, int arg2) throws SlickException {
+    public void update(GameContainer gc, StateBasedGame arg1, int arg2) {
         int x = Mouse.getX();
         int y = gc.getHeight() - Mouse.getY();
 
         // Start button is pressed
         if((x > gc.getWidth() / 2 - 50 && x < gc.getWidth() / 2 + 50) && (y > 400 && y < 450)) {
             if(Mouse.isButtonDown(0)) {
+                stopThread = true;
                 arg1.enterState(1);
             }
         }
-        startConnection();
     }
 
     @Override
@@ -67,42 +121,14 @@ public class LogIn extends BasicGameState {
         return 3;
     }
 
-    public void startConnection(){
-        DatagramChannel channel;
-        ByteBuffer receivingBuffer;
-
-        try{
-            channel = DatagramChannel
-                    .open(StandardProtocolFamily.INET);
-            channel.bind(new InetSocketAddress(listenPort));
-            channel.configureBlocking(false);
-
-            receivingBuffer = ByteBuffer.allocate(200);
-        }catch (IOException ex){
-            LOG.log(Level.SEVERE, null, ex);
-            return;
+    private void addNewPlayer(SocketAddress senderAddress) {
+        IDAddresses.putIfAbsent(senderAddress, IDAddresses.size());
+        if(IDAddresses.size() >= 4) {
+            stopThread = true;
         }
+    }
 
-        while(IDAddresses.size() < 4){
-            LOG.log(Level.INFO, "Waiting for a new client on port {0}", listenPort);
-            try{
-                SocketAddress senderAddress;
-                while (IDAddresses.size() != 4) {
-                    senderAddress = channel.receive(receivingBuffer);
-                    if (senderAddress != null) {
-                        int action = Byte.toUnsignedInt(receivingBuffer.get(0));
-
-                        if(action == 1) {
-                            IDAddresses.putIfAbsent(senderAddress, IDAddresses.size());
-                        }
-                    }
-                    receivingBuffer.clear();
-                    receivingBuffer.put(new byte[200]);
-                    receivingBuffer.clear();
-                }
-            }catch (IOException ex){
-                LOG.log(Level.SEVERE, ex.getMessage(), ex);
-            }
-        }
+    private boolean getStopThread() {
+        return stopThread;
     }
 }
