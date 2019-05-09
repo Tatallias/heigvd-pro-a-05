@@ -9,12 +9,14 @@ public class ServerMain extends StateBasedGame{
 	private static final int MENU = 0;
 	private static final int CREDITS = 2;
 	private static final int GAME = 1;
+	private static final int LOG_IN = 3;
 	
 	
 	public ServerMain(String name) {
 		super(name);
 		this.addState(new MainMenu());
 		this.addState(new Game());
+		this.addState(new LogIn());
 	}
 	
 	@Override
@@ -22,6 +24,7 @@ public class ServerMain extends StateBasedGame{
 		this.getState(MENU).init(gc, this);
 		//this.getState(CREDITS).init(arg0, this);
 		this.getState(GAME).init(gc, this);
+		this.getState(LOG_IN).init(gc, this);
 	}
 
 	public static void main(String[] args) throws SlickException {
