@@ -37,7 +37,7 @@ public class LogIn extends BasicGameState {
         catch (Exception e) {
             e.printStackTrace();
         }
-        qrCode = new Image("img/qr.png");
+        qrCode = new Image("img/qr.jpg");
         start = new Image("img/Start.png");
         if(nbThread < 1) {
             // Anonymous class, implements Runnable

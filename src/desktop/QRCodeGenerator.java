@@ -14,7 +14,7 @@ import java.util.Enumeration;
 
 public class QRCodeGenerator {
 
-    private static final String QR_CODE_IMAGE_PATH = "./img/qr.png";
+    private static final String QR_CODE_IMAGE_PATH = "./img/qr.jpg";
     private static final String PORT = "6666";
 
     /**
@@ -32,7 +32,7 @@ public class QRCodeGenerator {
         BitMatrix bitMatrix = qrCodeWriter.encode(text, BarcodeFormat.QR_CODE, width, height);
 
         Path path = FileSystems.getDefault().getPath(QR_CODE_IMAGE_PATH);
-        MatrixToImageWriter.writeToPath(bitMatrix, "PNG", path);
+        MatrixToImageWriter.writeToPath(bitMatrix, "jpg", path);
     }
 
     /**
