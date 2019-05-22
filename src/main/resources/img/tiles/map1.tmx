@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.2" tiledversion="1.2.3" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="1">
+ <tileset firstgid="1" source="tileset_cave_1.tsx"/>
+ <tileset firstgid="1025" source="iso-pixelart.tsx"/>
+ <tileset firstgid="1035" source="ClassicRPG_Sheet.tsx"/>
+ <layer id="1" name="Calque de Tile 1" width="100" height="100">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAACu3da07CQBSAUX7gSnxsQdQl+NqAexCXYOLCLRFjGWnn0RFGek4yiWIlcj+hMJK4Wi4Wq8bXqThbxld426+CdewWc+3RWoO59pja4bZb626dd+uiW5fbz9d6/FLyeJW61sG63l5+E1yux49D9rjv1kO3Hvd8TY8vpefz3Baby163H78NHDOly6n4ix5DMw57xI7XI+/5bqxDONuhHuH36pF//gibpPyOj/WY2uRU1Difpz7e5PTIbTInOT3Gjov1mNJkTmq0SO1R2mROUmaXMrPUHiXnkjkZm0N/D+Qlsvozjh3bv149do3NYWgPZOrqX68eu8bm0N8D+Yis/rxjx/avV49dhz6fO3+MS51bjee7udepR/n8vP6oI2UetfdLvD4ftrm9m7/x3WU0ye0xdY93Tja396lbz4mzyd3ftd+eJ3c2Q/Pd16NGCz3K7iOxHqUt9Ci7n4R7ILVa6FHWxPtL6pg6q++573t/SY0WerS35uTYs9YDAAAAAOD/ej/2DwAAAAAAAAAAAAAAAAAAAAAAAJy0lP+RTh0ps9bjcPRoix5t0aMterRFj7bo0RY92qJHW1Jm/Qn3FDb1QJwAAA==
+  </data>
+ </layer>
+ <layer id="3" name="Calque 2" width="100" height="100">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAACu3Y0QnCMBQF0H5kAPfoEK5QcARxAXUHrVP7QgP6U1FpJcRz4PJaKPnI/SjJmLruFsnGN54BgLYd/POrMUQX+zRNAAAAWMo5zpmnyKWcN6/l/Tn/YK07kE/XPcb3fWTzYrZurTuQb9bNfWzLvs9NfkcfddFHXfRRF33UJfexK/s+NwEAWjKkRwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIBl3QF4pMypQJwAAA==
+  </data>
+ </layer>
+ <layer id="4" name="Calque 3" width="100" height="100">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAACu3RMQqAMBQD0Az/yvYO9dQWSoeKqw7yHmTJmCTTUUmrbJ463rU27yNn7R+sju/cN/cBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPzfBYNloclAnAAA
+  </data>
+ </layer>
+ <layer id="5" name="Calque 4" width="100" height="100">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAACu3UMQ6AIBAEQIv7svIG5dNiYSDaWIHGmeaSrciRvWnia1KMfsG/zGXfS9TZZofsP7pay763qLPN6CtdenFmjJHj3gX3aTydeBedAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAntoBUiMorkCcAAA=
+  </data>
+ </layer>
+ <layer id="6" name="Calque 5" width="100" height="100">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAACu3aIQoAIAxA0QXv60wewktrtJpUeA/WB5+1RQD8p5fbG7AbegAAAAAAAAAAAAAAPKGWiFzT/Hk/Ye+RmlznPgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIATE2f7nM5AnAAA
+  </data>
+ </layer>
+</map>
