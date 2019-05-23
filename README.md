@@ -16,17 +16,15 @@ Development team:
 | Guillaume Vetter (deputy project lead)	      | guillaume.vetter@heig-vd.ch 		      | gvetter 		|
 ## Dependencies
 
-This software requires Java 8 or above and the following libraries:
-
-* Slick2D
-* LWJGL
-* JavaFx
-* ZXing
+This software requires Java 8 or above.
 
 ## Build and install
 
 1. Download the `.zip`
 2. Unzip it on your machine
+
+The Android Software is available on this repository :
+https://github.com/Tatallias/heigvd-pro-a-05b
 
 ## Run
 
@@ -34,6 +32,4 @@ This software requires Java 8 or above and the following libraries:
 
 ## Documentation
 
-User manual: see file xxxxx.
-
-API documentation: see file yyyyy.
+Available on our Drive
