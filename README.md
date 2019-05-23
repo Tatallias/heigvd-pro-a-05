@@ -4,6 +4,9 @@ An arcade/combat/drawing game where you incarnate a mage and you draw symbols to
 
 This software was developed as semester project (PRO) at HEIG-VD, academic year 2018/19.
 
+The Android Software is available on this repository :
+https://github.com/Tatallias/heigvd-pro-a-05b
+
 Development team:
 
 | Name                                         | Email                               | Github  		|
@@ -23,8 +26,6 @@ This software requires Java 8 or above.
 1. Download the `.zip`
 2. Unzip it on your machine
 
-The Android Software is available on this repository :
-https://github.com/Tatallias/heigvd-pro-a-05b
 
 ## Run
 
